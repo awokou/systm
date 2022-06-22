@@ -41,4 +41,9 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable("studentId") Long customerId) {
         customerService.deleteCustomer(customerId);
     }
+
+    @GetMapping("/customers/{firstname}")
+    public List<Customer> findByFirstName(@RequestParam String firstname){
+        return customerService.findByFirstName(firstname);
+    }
 }

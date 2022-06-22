@@ -28,7 +28,7 @@ public class CustomerService {
     public  Customer addCustomer(Customer customer) {
         Boolean existsEmail = customerRepository.selectExistsEmail(customer.getEmail());
         if (existsEmail) {
-            throw new BadRequestException("Email " + customer.getEmail() + " taken");
+            throw new BadRequestException("Email " + customer.getEmail() + " is already exist");
         }
        return customerRepository.save(customer);
     }
@@ -38,5 +38,10 @@ public class CustomerService {
             throw new CustomerNotFoundException("Customer with id " + customerId + " does not exists");
         }
         customerRepository.deleteById(customerId);
+    }
+
+    public List<Customer> findByFirstName(String firstname){
+        List<Customer> customers = customerRepository.findByFirstName(firstname);
+        return customers;
     }
 }
