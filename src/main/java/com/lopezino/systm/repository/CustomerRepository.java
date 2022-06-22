@@ -21,12 +21,11 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
 
     //JPQL with named parameters
     @Query("SELECT c from Customer c where c.firstName=:firstname")
-   public List<Customer> findByFirstName(@Param("firstname") String firstName);
+    List<Customer> findByFirstName(@Param("firstname") String firstName);
 
     //JPQL with index parameters
-
     @Query("SELECT c from Customer c where c.firstName=?1")
-    List<Customer> findByFirstNamewithIndexParam( String firstName);
+    List<Customer> findByFirstNamewithIndexParam(String firstName);
 
     //Native SQL with named parameters
     @Query(value = "SELECT * from Customer c where c.lastname=:lastname", nativeQuery = true)
@@ -35,4 +34,10 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
     //Native SQL with Index parameters
     @Query(value = "SELECT * from Customer c where c.lastname= ?1", nativeQuery = true)
     List<Customer> findByLastNamewithIndexParam(String lastname);
+
+    @Query(value="SELECT c FROM Customer c WHERE c.lastName=?1")
+    List<Customer> getCustomerInfoByLastName(String lastName);
+
+    @Query(value="SELECT c FROM Customer c WHERE c.firstName=?1 AND email=?2")
+    List<Customer> findByFirstNameAndEmail(String firstName,String email);
 }

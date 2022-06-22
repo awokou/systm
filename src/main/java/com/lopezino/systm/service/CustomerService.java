@@ -33,6 +33,10 @@ public class CustomerService {
        return customerRepository.save(customer);
     }
 
+    public Customer updateCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
     public void deleteCustomer(Long customerId) {
         if(!customerRepository.existsById(customerId)) {
             throw new CustomerNotFoundException("Customer with id " + customerId + " does not exists");
@@ -40,8 +44,8 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    public List<Customer> findByFirstName(String firstname){
-        List<Customer> customers = customerRepository.findByFirstName(firstname);
+    public List<Customer> findByFirstName(String firstName){
+        List<Customer> customers = customerRepository.findByFirstName(firstName);
         return customers;
     }
 }

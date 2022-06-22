@@ -23,9 +23,11 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-    @GetMapping("/customers/{customerId}")
+    @GetMapping("/customers/{id}")
     public Customer getCustomerById(@PathVariable("customerId") Long customerId) {
+
         Customer customers = customerService.getCustomerById(customerId);
+
         return customers;
     }
 
@@ -38,12 +40,14 @@ public class CustomerController {
     }
 
     @DeleteMapping("/customers/{customerId}")
-    public void deleteCustomer(@PathVariable("studentId") Long customerId) {
+    public void deleteCustomer(@PathVariable("customerId") Long customerId) {
+
         customerService.deleteCustomer(customerId);
     }
 
-    @GetMapping("/customers/{firstname}")
-    public List<Customer> findByFirstName(@RequestParam String firstname){
-        return customerService.findByFirstName(firstname);
+    @GetMapping("/customers/firstName/{firstName}")
+    public List<Customer> findByFirstName(@PathVariable String firstName) {
+
+        return customerService.findByFirstName(firstName);
     }
 }

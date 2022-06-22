@@ -15,8 +15,8 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "customer")
-public class Customer {
+@Table(name = "employee")
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,4 +38,8 @@ public class Customer {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Gender gender;
+
+    @NotBlank
+    @Column(nullable = false)
+    private Integer salary;
 }
